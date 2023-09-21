@@ -1,2 +1,2 @@
-# wa-sddo-issuances
-Repositório de código para os recursos referentes à emissão do projeto SDDO
+# wa-sddo-quotation
+Repositório de código para os recursos referentes à cotação do projeto SDDO
