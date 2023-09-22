@@ -7,6 +7,7 @@ import br.com.sennatech.wasddoquotation.domain.dto.QuotationResquestDTO;
 import br.com.sennatech.wasddoquotation.integration.KafkaProducer;
 import br.com.sennatech.wasddoquotation.service.CalculateQuotation;
 import br.com.sennatech.wasddoquotation.service.GeneratesQuotationCode;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class QuotationController {
 
 
     @PostMapping
-    public ResponseEntity<FinalQuotationResponse>  quotation(@RequestBody QuotationResquestDTO dataDTO) {
+    public ResponseEntity<FinalQuotationResponse>  quotation(@Valid @RequestBody QuotationResquestDTO dataDTO) {
         String codetest = generatesQuotationCode.createCode();
         var value = calculateQuotation.quotationCalc(dataDTO).setScale(2, RoundingMode.HALF_EVEN);
         var finalQuotation = new QuotationKafkaMessage();
