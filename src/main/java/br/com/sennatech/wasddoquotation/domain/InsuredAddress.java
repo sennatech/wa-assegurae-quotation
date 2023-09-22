@@ -2,7 +2,9 @@ package br.com.sennatech.wasddoquotation.domain;
 
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
+@Data
 public class InsuredAddress {
     @NotBlank
     private String street;
