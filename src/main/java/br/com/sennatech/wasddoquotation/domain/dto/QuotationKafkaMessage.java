@@ -13,6 +13,6 @@ public class QuotationKafkaMessage {
     String timestamp;
     String operation = "COTACAO" ;
     String domain = "SEGURO";
-    String origin = "SEGURATECH";
+    String origin = "ASEGURAÊ";
     DataQuotation data;
 }

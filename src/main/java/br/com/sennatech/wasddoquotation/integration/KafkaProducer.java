@@ -19,8 +19,8 @@ public class KafkaProducer {
 
     public void send(QuotationKafkaMessage message) {
         this.kafkaTemplate.send(topicName, message);
-        log.info("Published the value [{}], with quotation code: [{}] to the kafka queue: [{}]",
-                message.getData().getValue(),
+        log.info("Published the amount [{}], with quotation code: [{}] to the kafka queue: [{}]",
+                message.getData().getAmount(),
                 message.getData().getQuotationNumber(),
                 topicName
         );

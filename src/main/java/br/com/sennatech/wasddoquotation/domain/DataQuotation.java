@@ -9,6 +9,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class DataQuotation {
     private String quotationNumber;
-    private BigDecimal value;
+    private BigDecimal amount;
 
 }

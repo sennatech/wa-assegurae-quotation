@@ -12,7 +12,7 @@ public class CalculateQuotation {
         public BigDecimal quotationCalc(QuotationResquestDTO data) {
           var coverageSum = data.getCoverages()
                  .stream()
-                 .map(coverage -> coverage.value())
+                 .map(coverage -> coverage.amount())
                  .reduce(BigDecimal::add).get();
           if (data.getCoverages().size() > 2){
               coverageSum = coverageSum.multiply(new BigDecimal(0.8));

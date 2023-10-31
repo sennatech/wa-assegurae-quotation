@@ -11,7 +11,7 @@ public class InsuredAddress {
     @NotBlank
     private String number;
     @NotBlank
-    private String district;
+    private String neighbourhood;
     @NotBlank
     private String city;
     @NotBlank
