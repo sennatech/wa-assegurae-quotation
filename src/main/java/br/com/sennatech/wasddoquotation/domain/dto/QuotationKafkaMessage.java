@@ -6,11 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class QuotationKafkaMessage {
-    String timestamp;
+    String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());;
     String operation = "COTACAO" ;
     String domain = "SEGURO";
     String origin = "ASEGURAÊ";

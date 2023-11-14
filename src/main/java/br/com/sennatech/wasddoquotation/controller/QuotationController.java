@@ -33,7 +33,6 @@ public class QuotationController {
         String codetest = generatesQuotationCode.createCode();
         var value = calculateQuotation.quotationCalc(dataDTO).setScale(2, RoundingMode.HALF_EVEN);
         var finalQuotation = new QuotationKafkaMessage();
-        finalQuotation.setTimestamp(LocalDateTime.now().toString());
         finalQuotation.setData(new DataQuotation(codetest,value));
         this.kafkaProducer.send(finalQuotation);
         return ResponseEntity.ok().body(new FinalQuotationResponse(codetest,value));
