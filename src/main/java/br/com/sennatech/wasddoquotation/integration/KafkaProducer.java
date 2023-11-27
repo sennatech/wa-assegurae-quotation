@@ -16,6 +16,7 @@ public class KafkaProducer {
 
     @Value("${topic.name}")
     private String topicName;
+    private QuotationKafkaMessage kafkaMessage;
 
     public void send(QuotationKafkaMessage message) {
         this.kafkaTemplate.send(topicName, message);
@@ -24,5 +25,6 @@ public class KafkaProducer {
                 message.getData().getQuotationNumber(),
                 topicName
         );
+        System.out.println(kafkaMessage);
     }
 }

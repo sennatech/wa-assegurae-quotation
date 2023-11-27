@@ -2,6 +2,7 @@ package br.com.sennatech.wasddoquotation.controller;
 
 import br.com.sennatech.wasddoquotation.domain.DataQuotation;
 import br.com.sennatech.wasddoquotation.domain.FinalQuotationResponse;
+import br.com.sennatech.wasddoquotation.domain.InsuredAddress;
 import br.com.sennatech.wasddoquotation.domain.dto.QuotationKafkaMessage;
 import br.com.sennatech.wasddoquotation.domain.dto.QuotationResquestDTO;
 import br.com.sennatech.wasddoquotation.integration.KafkaProducer;
@@ -33,10 +34,9 @@ public class QuotationController {
         String codetest = generatesQuotationCode.createCode();
         var value = calculateQuotation.quotationCalc(dataDTO).setScale(2, RoundingMode.HALF_EVEN);
         var finalQuotation = new QuotationKafkaMessage();
-        finalQuotation.setData(new DataQuotation(codetest,value));
+        finalQuotation.setData(new DataQuotation(codetest,value,dataDTO.getInsuredAddress()));
         this.kafkaProducer.send(finalQuotation);
         return ResponseEntity.ok().body(new FinalQuotationResponse(codetest,value));
-
-
     }
+
 }

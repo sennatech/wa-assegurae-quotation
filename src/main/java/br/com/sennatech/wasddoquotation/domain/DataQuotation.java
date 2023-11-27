@@ -10,5 +10,6 @@ import java.math.BigDecimal;
 public class DataQuotation {
     private String quotationNumber;
     private BigDecimal amount;
+    private InsuredAddress address;
 
 }
