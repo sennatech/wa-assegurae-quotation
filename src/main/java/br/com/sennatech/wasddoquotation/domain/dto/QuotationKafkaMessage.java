@@ -16,6 +16,6 @@ public class QuotationKafkaMessage {
     String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());;
     String operation = "COTACAO" ;
     String domain = "SEGURO";
-    String origin = "ASEGURAÊ";
+    String origin = "ASSEGURAÊ";
     DataQuotation data;
 }
