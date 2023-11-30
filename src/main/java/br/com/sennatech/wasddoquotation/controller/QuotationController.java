@@ -8,6 +8,7 @@ import br.com.sennatech.wasddoquotation.domain.dto.QuotationResquestDTO;
 import br.com.sennatech.wasddoquotation.integration.KafkaProducer;
 import br.com.sennatech.wasddoquotation.service.CalculateQuotation;
 import br.com.sennatech.wasddoquotation.service.GeneratesQuotationCode;
+import br.com.sennatech.wasddoquotation.service.GetCoverageType;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,16 +29,18 @@ public class QuotationController {
     private final CalculateQuotation calculateQuotation;
     private final GeneratesQuotationCode generatesQuotationCode;
     private final KafkaProducer kafkaProducer;
+    private final GetCoverageType getCoverageType;
 
 
     @PostMapping
     public ResponseEntity<FinalQuotationResponse>  quotation(@Valid @RequestBody QuotationResquestDTO dataDTO) {
         String codetest = generatesQuotationCode.createCode();
+        List<String> listNameCoverages = getCoverageType.getTypes(dataDTO);
         var value = calculateQuotation.quotationCalc(dataDTO).setScale(2, RoundingMode.HALF_EVEN);
         var finalQuotation = new QuotationKafkaMessage();
-        finalQuotation.setData(new DataQuotation(codetest,value,dataDTO.getInsuredAddress()));
+        finalQuotation.setData(new DataQuotation(listNameCoverages,codetest,value,dataDTO.getInsuredAddress()));
         this.kafkaProducer.send(finalQuotation);
-        return ResponseEntity.ok().body(new FinalQuotationResponse(codetest,value));
+        return ResponseEntity.ok().body(new FinalQuotationResponse( listNameCoverages ,codetest,value));
     }
 
 }
