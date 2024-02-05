@@ -17,5 +17,9 @@ public class QuotationResquestDTO {
     @Valid
     @NotNull
     InsuredAddress insuredAddress;
+
+    @Valid
+    @NotNull
+    String documentNumber;
 }
 
