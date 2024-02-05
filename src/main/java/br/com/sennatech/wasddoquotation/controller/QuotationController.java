@@ -36,9 +36,9 @@ public class QuotationController {
         List<String> listNameCoverages = getCoverageType.getTypes(dataDTO);
         var value = calculateQuotation.quotationCalc(dataDTO).setScale(2, RoundingMode.HALF_EVEN);
         var finalQuotation = new QuotationKafkaMessage();
-        finalQuotation.setData(new DataQuotation(listNameCoverages,codetest,value,dataDTO.getInsuredAddress()));
-        finalQuotation.setDocumentNumber(dataDTO.getDocumentNumber());
+        finalQuotation.setData(new DataQuotation(listNameCoverages,codetest,value,dataDTO.getInsuredAddress(), dataDTO.getDocumentNumber()));
         this.kafkaProducer.send(finalQuotation);
+        System.out.println(finalQuotation);
         return ResponseEntity.ok().body(new FinalQuotationResponse( listNameCoverages ,codetest,value, dataDTO.getDocumentNumber()));
     }
 

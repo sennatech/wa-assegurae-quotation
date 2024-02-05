@@ -13,5 +13,6 @@ public class DataQuotation {
     private String quotationNumber;
     private BigDecimal amount;
     private InsuredAddress address;
+    private String documentNumber;
 
 }
