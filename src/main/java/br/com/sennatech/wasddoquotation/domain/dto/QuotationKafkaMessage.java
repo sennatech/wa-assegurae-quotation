@@ -18,4 +18,5 @@ public class QuotationKafkaMessage {
     String domain = "SEGURO";
     String origin = "ASSEGURAÊ";
     DataQuotation data;
+    String documentNumber;
 }

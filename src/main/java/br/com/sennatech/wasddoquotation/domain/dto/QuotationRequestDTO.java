@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class QuotationResquestDTO {
+public class QuotationRequestDTO {
     @Valid
     @NotNull
     List<Coverage> coverages;
@@ -17,5 +17,7 @@ public class QuotationResquestDTO {
     @Valid
     @NotNull
     InsuredAddress insuredAddress;
+
+    String documentNumber;
 }
 

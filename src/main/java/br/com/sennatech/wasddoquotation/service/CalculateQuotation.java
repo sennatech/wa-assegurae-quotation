@@ -1,6 +1,6 @@
 package br.com.sennatech.wasddoquotation.service;
 
-import br.com.sennatech.wasddoquotation.domain.dto.QuotationResquestDTO;
+import br.com.sennatech.wasddoquotation.domain.dto.QuotationRequestDTO;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.math.RoundingMode;
 @Service
 public class CalculateQuotation {
 
-        public BigDecimal quotationCalc(QuotationResquestDTO data) {
+        public BigDecimal quotationCalc(QuotationRequestDTO data) {
           var coverageSum = data.getCoverages()
                  .stream()
                  .map(coverage -> coverage.amount())

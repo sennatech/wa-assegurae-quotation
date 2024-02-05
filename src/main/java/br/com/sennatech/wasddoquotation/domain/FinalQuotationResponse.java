@@ -13,6 +13,7 @@ public class FinalQuotationResponse {
     private List<String> coverageTypes;
     private String quotationNumber;
     private BigDecimal amount;
+    private String documentNumber;
 
 
 
